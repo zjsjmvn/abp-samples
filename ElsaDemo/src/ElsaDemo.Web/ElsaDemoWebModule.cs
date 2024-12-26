@@ -59,7 +59,7 @@ namespace ElsaDemo.Web
     [DependsOn(
         typeof(ElsaDemoHttpApiModule),
         typeof(ElsaDemoApplicationModule),
-        typeof(ElsaDemoEntityFrameworkCoreDbMigrationsModule),
+        typeof(ElsaDemoEntityFrameworkCoreModule),
         typeof(AbpAutofacModule),
         typeof(AbpIdentityWebModule),
         typeof(AbpSettingManagementWebModule),
@@ -74,11 +74,6 @@ namespace ElsaDemo.Web
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-            PreConfigure<AbpJsonOptions>(options =>
-            {
-                options.UseHybridSerializer = false;
-            });
-
             PreConfigure<IMvcBuilder>(mvcBuilder =>
             {
                 //https://github.com/abpframework/abp/pull/9299
@@ -226,7 +221,7 @@ namespace ElsaDemo.Web
                 options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
                 options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
-                options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch", "de"));
+                options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch"));
                 options.Languages.Add(new LanguageInfo("es", "es", "Español"));
             });
         }

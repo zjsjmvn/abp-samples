@@ -7,7 +7,7 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.IdentityServer.EntityFrameworkCore;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
@@ -45,8 +45,9 @@ namespace TodoApp.EntityFrameworkCore
         public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
         public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
         public DbSet<IdentityLinkUser> LinkUsers { get; set; }
-
-        // Tenant Management
+    public DbSet<IdentityUserDelegation> UserDelegations { get; set; }
+    public DbSet<IdentitySession> Sessions { get; set; }
+    // Tenant Management
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
@@ -70,7 +71,7 @@ namespace TodoApp.EntityFrameworkCore
             builder.ConfigureBackgroundJobs();
             builder.ConfigureAuditLogging();
             builder.ConfigureIdentity();
-            builder.ConfigureIdentityServer();
+            builder.ConfigureOpenIddict();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
 

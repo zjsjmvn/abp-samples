@@ -3,6 +3,7 @@ using Volo.Abp;
 using Volo.Abp.Authorization;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
+using Volo.Abp.Uow;
 
 namespace ProductManagement
 {
@@ -17,6 +18,11 @@ namespace ProductManagement
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.AddAlwaysAllowAuthorization();
+
+            Configure<AbpUnitOfWorkDefaultOptions>(options =>
+            {
+                options.TransactionBehavior = UnitOfWorkTransactionBehavior.Disabled;
+            });
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
